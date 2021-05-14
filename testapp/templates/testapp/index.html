@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Sadretdinov Ali</title>
+</head>
+<body>
+<div align="center">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    <table>
+    <tr>
+        <th>Имя файла</th>
+        <th>Файл</th>
+        <th>Дата загрузки</th>
+    </tr>
+    <tr>
+     {% for f in files %}
+        <tr>
+        <td>{{ f.file_name|truncatechars:10 }}</td>
+        <td><a href="#">{{ f.upl_file|truncatechars:10 }}</a></td>
+        <td>{{ f.upl_date|date:"G:i:s-j.n.y" }}</td>
+        </tr>
+     {% endfor %}
+</table>
+<hr>
+
+    <table>
+        <tr>
+            {% for t in tab_titles %}
+                <th>{{ t }}</th>
+            {% endfor %}
+        </tr>
+        {% for el in tab_vals %}
+            <tr>
+                {% for v in el %}
+                <td>{{ v }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+
+</div>
+
+
+
+</body>
+
+</html>
